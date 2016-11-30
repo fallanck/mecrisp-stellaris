@@ -70,7 +70,7 @@ h_flashkomma:
   cmp r2, r3
   bne 3f
 
-  @ Okay, alle Proben bestanden. 
+  @ Okay, alle Proben bestanden.
 
   @ Im STM32F1 ist der Flash-Speicher gespiegelt, die wirkliche Adresse liegt weiter hinten !
   @ Flash memory is mirrored, use true address later for write
@@ -158,6 +158,7 @@ flashpageerase:
 @ -----------------------------------------------------------------------------
   Wortbirne Flag_visible, "eraseflash" @ ( -- )
   @ Löscht den gesamten Inhalt des Flashdictionaries.
+eraseflash:
 @ -----------------------------------------------------------------------------
         ldr r0, =FlashDictionaryAnfang
 eraseflash_intern:
@@ -184,5 +185,6 @@ eraseflash_intern:
   Wortbirne Flag_visible, "eraseflashfrom" @ ( Addr -- )
   @ Beginnt an der angegebenen Adresse mit dem Löschen des Dictionaries.
 @ -----------------------------------------------------------------------------
+        cpsid i
         popda r0
         b.n eraseflash_intern

@@ -69,12 +69,31 @@ Reset: @ Einsprung zu Beginn
 @ -----------------------------------------------------------------------------
    @ Initialisierungen der Hardware, habe und brauche noch keinen Datenstack dafür
    @ Initialisations for Terminal hardware, without Datastack.
-   bl uart_init
+@   bl uart_init
 
    @ Catch the pointers for Flash dictionary
    .include "../common/catchflashpointers.s"
 
-   welcome " for STM32F103 by Matthias Koch"
+@   welcome " for STM32F103 by Matthias Koch"
 
    @ Ready to fly !
    .include "../common/boot.s"
+
+@ -----------------------------------------------------------------------------
+@  Automatic erase of flash dictionary after initial boot
+@ -----------------------------------------------------------------------------
+
+.p2align 2            @ Align on 4-even before filling up the core space
+
+.org 0x5000, 0xFFFFFFFF @ Synthesise a definition at the beginning of the user flash dictionary
+                        @ which allows catching the dictionary pointers in every case
+                        @ and erases the whole dictionary space - including itself - on the first boot.
+
+ .word  0xFFFFFFFF   @ Empty Link denoting end of dictionary
+ .hword Flag_visible @ Flags normal
+ .byte  4            @ Length
+ .ascii "init"       @ Name
+ .p2align 1          @ Realign
+
+  bl init
+  bl eraseflash

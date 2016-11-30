@@ -66,4 +66,13 @@ uart_init:
 
   bx lr
 
+@ -----------------------------------------------------------------------------
+  Wortbirne Flag_visible, "init"
+init:
+@ -----------------------------------------------------------------------------
+  push {lr}
+  bl uart_init
+  welcome " for STM32F103 by Matthias Koch"
+  pop {pc}
+
   .ltorg @ Hier werden viele spezielle Hardwarestellenkonstanten gebraucht, schreibe sie gleich !
