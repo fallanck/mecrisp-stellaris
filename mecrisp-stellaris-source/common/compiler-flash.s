@@ -508,6 +508,7 @@ compiletoram:
 
 @ -----------------------------------------------------------------------------
   Wortbirne Flag_visible, "compiletoflash"
+compiletoflash:
 @ -----------------------------------------------------------------------------
   @ Prüfe, ob der Dictionarypointer im Ram oder im Flash ist:
   ldr r0, =Dictionarypointer
