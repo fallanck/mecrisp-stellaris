@@ -49,11 +49,6 @@ h_flashkomma:
   cmp r0, r3
   blo 3f
 
-  ldr r3, =FlashDictionaryEnde
-  cmp r0, r3
-  bhs 3f
-
-
   @ Prüfe Inhalt. Schreibe nur, wenn es NICHT -1 ist.
   ldr r3, =0xFFFF
   ands r1, r3  @ High-Halfword der Daten wegmaskieren
