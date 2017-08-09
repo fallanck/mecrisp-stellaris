@@ -4,3 +4,4 @@
 *.list
 *.srec
 *.o
+*-linux
