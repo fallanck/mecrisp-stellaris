@@ -124,83 +124,9 @@
             </xsl:for-each>
             <xsl:text>
 </xsl:text>
-            <xsl:text>\ </xsl:text>
-            <xsl:value-of select="$device"/>
-            <xsl:text>_</xsl:text>
-            <xsl:value-of select="$reg1"/>
-            <xsl:text> Register BitField Fetch Words  
-</xsl:text>
-            <xsl:for-each select="fields/field">
-              <xsl:text>: </xsl:text>
-              <xsl:value-of select="$device"/>
-              <xsl:text>_</xsl:text>
-              <xsl:value-of select="name"/>
-              <xsl:text>@ </xsl:text>
-              <xsl:value-of select="$device"/>
-              <xsl:text>_</xsl:text>
-              <xsl:value-of select="$reg1"/>
-              <xsl:text> @ %</xsl:text>
-                             <xsl:choose>
-                    <xsl:when test ="bitWidth = 1">
-                      <xsl:text>1 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 2">
-                      <xsl:text>11 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 3">
-                      <xsl:text>111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 4">
-                      <xsl:text>1111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 5">
-                      <xsl:text>11111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 6">
-                      <xsl:text>111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 7">
-                      <xsl:text>1111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 8">
-                      <xsl:text>11111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 9">
-                      <xsl:text>111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 12">
-                      <xsl:text>11111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 14">
-                      <xsl:text>11111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 15">
-                      <xsl:text>111111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 16">
-                      <xsl:text>1111111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 20">
-                      <xsl:text>11111111111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 24">
-                      <xsl:text>111111111111111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 28">
-                      <xsl:text>1111111111111111111111111111 </xsl:text>
-                    </xsl:when>
-                    <xsl:when test ="bitWidth = 32">
-                      <xsl:text>11111111111111111111111111111111 </xsl:text>
-                    </xsl:when>	   
-                </xsl:choose>
-              <xsl:text> </xsl:text>
-              <xsl:value-of select="bitOffset"/>
-              <xsl:text> lshift and </xsl:text>
-              <xsl:value-of select="bitOffset"/>
-              <xsl:text> rshift ; </xsl:text>
-              <xsl:text>
-</xsl:text>
-            </xsl:for-each>
+
+
+            
           </xsl:for-each>
           <xsl:text>
                     </xsl:text>
