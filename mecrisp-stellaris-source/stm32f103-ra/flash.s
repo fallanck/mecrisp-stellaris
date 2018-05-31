@@ -49,7 +49,12 @@ h_flashkomma:
   cmp r0, r3
   blo 3f
 
+  .ifdef FlashDictionaryEnde
   ldr r3, =FlashDictionaryEnde
+  .else
+  GetFlashDictionaryEnd r3
+  .endif
+
   cmp r0, r3
   bhs 3f
 
@@ -161,8 +166,13 @@ flashpageerase:
 @ -----------------------------------------------------------------------------
         ldr r0, =FlashDictionaryAnfang
 eraseflash_intern:
-  cpsid i
-        ldr r1, =FlashDictionaryEnde
+    cpsid i
+  .ifdef FlashDictionaryEnde
+    ldr r1, =FlashDictionaryEnde
+  .else
+    GetFlashDictionaryEnd r1
+  .endif
+
         movw r2, #0xFFFF
 
 1:      ldrh r3, [r0]

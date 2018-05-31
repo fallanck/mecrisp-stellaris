@@ -19,7 +19,7 @@
 .syntax unified
 .cpu cortex-m3
 .thumb
-
+.equ AutoadjustFlashDictionaryEnd, 1
 @ -----------------------------------------------------------------------------
 @ Swiches for capabilities of this chip
 @ -----------------------------------------------------------------------------
@@ -47,7 +47,15 @@
 
 .equ Kernschutzadresse,     0x00005000 @ Darunter wird niemals etwas geschrieben ! Mecrisp core never writes flash below this address.
 .equ FlashDictionaryAnfang, 0x00005000 @ 20 kb für den Kern reserviert...           20 kb Flash reserved for core.
-.equ FlashDictionaryEnde,   0x00010000 @ 44 kb Platz für das Flash-Dictionary       44 kb Flash available. Porting: Change this !
+.ifdef AutoadjustFlashDictionaryEnd
+.macro  GetFlashDictionaryEnd, Reg
+  ldr   \Reg, =0x1FFFF7E0
+  ldrh  \Reg, [\Reg, #0]
+  lsls  \Reg, \Reg, #10
+.endm
+.else
+  .equ FlashDictionaryEnde,   0x00010000 @ 64 kb Platz für das Flash-Dictionary       64 kb Flash available. Porting: Change this !
+.endif
 .equ Backlinkgrenze,        RamAnfang  @ Ab dem Ram-Start.
 
 

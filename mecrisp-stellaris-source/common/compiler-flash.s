@@ -432,7 +432,11 @@ allot:  @ Überprüft auch gleich, ob ich mich noch im Ram befinde.
   popda r2    @ Gewünschte Länge
   adds r1, r2  @ Pointer vorrücken
 
+.ifdef FlashDictionaryEnde
   ldr r2, =FlashDictionaryEnde
+.else  
+  GetFlashDictionaryEnd r2
+.endif
 
   cmp r1, r2
   blo.n allot_ok

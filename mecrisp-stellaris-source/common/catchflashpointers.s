@@ -151,8 +151,11 @@ Sucheflashpointer_Speicherbelegung_fertig:
   @ Mache mich auf die Suche nach dem Dictionarypointer im Flash:
   @ Suche jetzt gleich noch den DictionaryPointer.
   @ Time to search the Dictionarypointer !
-
+.ifdef FlashDictionaryEnde
   ldr r0, =FlashDictionaryEnde
+.else
+  GetFlashDictionaryEnd r0
+.endif
   ldr r1, =FlashDictionaryAnfang
   ldr r2, =erasedhalfword
 
