@@ -2,6 +2,7 @@
 *.elf
 *.hex
 *.list
+*.lst
 *.srec
 *.o
 *-linux
